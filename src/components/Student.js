@@ -8,10 +8,12 @@ export default function Student() {
     const paperStyle = {padding:'50px 20px',width:600,margin:'20px auto'}
     const[name,setName]=useState('')
     const[address,setAddress]=useState('')
+    const[branch,setBranch]=useState('')
+    const[isWorking,setIsWorking]=useState('')
     const[students, setStudents]=useState([])
     const handleClick=(e)=>{
         e.preventDefault()
-        const student={name,address}
+        const student={name,address, branch, isWorking}
         console.log(student)
         fetch("http://localhost:8080/student/add",{
           method:"POST",
@@ -48,6 +50,12 @@ export default function Student() {
       <TextField id="outlined-basic" label="Student address" variant="outlined" fullWidth
       value={address}
       onChange={(e)=>setAddress(e.target.value)}/> 
+      <TextField id="outlined-basic" label="Student branch" variant="outlined" fullWidth
+      value={branch}
+      onChange={(e)=>setBranch(e.target.value)}/> 
+      <TextField id="outlined-basic" label="Student working" variant="outlined" fullWidth
+      value={isWorking}
+      onChange={(e)=>setIsWorking(e.target.value)}/> 
     <Button variant="contained" color="success" onClick={handleClick}>
        Submit
     </Button>
@@ -59,8 +67,9 @@ export default function Student() {
         <Paper elevation={6} style={{margin:"10px",padding:"15px", textAlign:"left"}} key={student.id}>
          Id:{student.id}<br/>
          Name:{student.name}<br/>
-         Address:{student.address}
-
+         Address:{student.address}<br/>
+         Branch:{student.branch}<br/>
+         Working:{student.isWorking}
         </Paper>
               ))
             }
